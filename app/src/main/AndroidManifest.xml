@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dataservicios.ttauditpromotoriaventaalicorp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission." />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--
+         The following two permissions are not required to use
+         Google Maps Android API v2, but are recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- PERMISO PARA HACER LLAMADA DESDE LA APP A UN PHONO -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name=".app.AppController"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_agente"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PanelAdmin"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel" />
+        <activity
+            android:name=".RegistroMedia"
+            android:label="Registro de fotos"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel" />
+
+        <!-- ABOUT -->
+        <activity
+            android:name=".About"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel" />
+        <activity
+            android:name=".AndroidCustomGalleryActivity"
+            android:label="Galeria de Agente"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel" />
+        <activity
+            android:name=".AlicorpPromotoria.NewStoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel" />
+
+        <activity android:name=".AlicorpPromotoria.CodigoVendedorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel"/>
+        <activity android:name=".AlicorpPromotoria.StoreOpenCloseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel"/>
+        <activity
+            android:name=".AlicorpPromotoria.ClientePerfectoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel" />
+        <activity android:name=".AlicorpPromotoria.ClientePerfectoLavanderiaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel"/>
+        <activity android:name=".AlicorpPromotoria.ProductoEncontradoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel"/>
+        <activity android:name=".AlicorpPromotoria.ClienteGondolaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel"/>
+        <activity android:name=".AlicorpPromotoria.ClienteCompraCategoriaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAdminPanel"></activity>
+
+        <uses-library android:name="com.google.android.maps" />
+
+        <!-- Key api Google Mode RELEASE -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDnsG6cF2cb7h-IlfD10GkkP-45zuvhEOY" />
+
+        <!-- Key api Google Mode DEBUG -->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.maps.v2.API_KEY" -->
+        <!-- android:value="AIzaSyDYarBiCk_P2EiPR3mcF7tPJBuSgtEDzw0" /> -->
+
+        <service
+            android:name=".Services.UploadService"
+            android:label="@string/app_name" />
+        <service
+            android:name=".Services.UpdateServices"
+            android:label="ALicor Upload" />
+        <service
+            android:name=".Services.MonitoGPSServices"
+            android:label="Alicorp GPS Location" />
+
+
+    </application>
+
+</manifest>

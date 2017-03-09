@@ -1,0 +1,251 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    tool:contetext=".Encuesta"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:weightSum="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Datos de la tienda" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:visibility="visible"
+            android:id="@+id/lyPermitio">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre /Razón Social"/>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:inputType="textCapSentences"
+                        style="@style/TextLogin"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"
+                        android:id="@+id/etFullname"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tvStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dirección" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:inputType="textCapSentences"
+                        style="@style/TextLogin"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"
+                        android:id="@+id/etAddress"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Código Cliente" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:inputType="textCapSentences"
+                        style="@style/TextLogin"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"
+                        android:id="@+id/etCodClient"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Distrito" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+                    <Spinner
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/spDistrito"
+
+                        />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Departament" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+                    <Spinner
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/spDepartamento"
+
+                        />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teléfono" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:inputType="phone"
+                        style="@style/TextLogin"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"
+                        android:id="@+id/etTelefono"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giro" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+                    <Spinner
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/spGiro"
+
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:id="@+id/lyContent"
+                    android:visibility="invisible">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Otros" />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:inputType="textCapSentences"
+                        style="@style/TextLogin"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"
+                        android:id="@+id/etOtros"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp">
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GUARDAR"
+                android:id="@+id/btSave"
+                android:drawableRight="@drawable/ic_sync"
+                style="@style/BottonBase" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>
+
+
