@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.dataservicios.ttauditpromotoriaventaalicorp.Model.Audit;
@@ -35,6 +37,7 @@ public class ClienteCompraCategoriaActivity extends Activity {
     private SessionManager session;
     private Button bt_guardar;
     private LinearLayout lyContent;
+    private Switch swSiNo;
 
     private String tipo,cadenaruc, fechaRuta, comentario="", type, region;
 
@@ -46,6 +49,7 @@ public class ClienteCompraCategoriaActivity extends Activity {
 
     // private RadioGroup rgOpt1;
     private String opt1="";
+    private int is_sino=0 ;
 
     //private RadioButton[] radioButton1Array;
     private CheckBox[] checkBoxArray;
@@ -66,6 +70,8 @@ public class ClienteCompraCategoriaActivity extends Activity {
         lyContent = (LinearLayout) findViewById(R.id.lyContent);
 
         bt_guardar = (Button) findViewById(R.id.btGuardar);
+        swSiNo = (Switch) findViewById(R.id.swSiNo);
+
 
         gpsTracker = new GPSTracker(myActivity);
         Bundle bundle = getIntent().getExtras();
@@ -88,28 +94,43 @@ public class ClienteCompraCategoriaActivity extends Activity {
 
         createChecOptions();
 
+        swSiNo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    is_sino = 1;
+                    lyContent.setVisibility(View.VISIBLE);
+                } else {
+                    is_sino = 0;
+                    lyContent.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
         bt_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
                 opt1 = "" ;
-                int contador = 0;
-                for (int x = 0; x < checkBoxArray.length; x++) {
-                    if(checkBoxArray[x].isChecked()) contador ++;
-                }
-
-                if (contador == 0){
-                    Toast.makeText(myActivity, R.string.message_select_options, Toast.LENGTH_LONG).show();
-                    return;
-                } else{
+                if (swSiNo.isChecked()) {
+                    int contador = 0;
                     for (int x = 0; x < checkBoxArray.length; x++) {
-                        if(checkBoxArray[x].isChecked())  {
-                            opt1 = opt1 + poll_id.toString() + checkBoxArray[x].getTag() + "|";
-
-                        }
+                        if(checkBoxArray[x].isChecked()) contador ++;
                     }
 
+                    if (contador == 0){
+                        Toast.makeText(myActivity, R.string.message_select_options, Toast.LENGTH_LONG).show();
+                        return;
+                    } else{
+                        for (int x = 0; x < checkBoxArray.length; x++) {
+                            if(checkBoxArray[x].isChecked())  {
+                                opt1 = opt1 + poll_id.toString() + checkBoxArray[x].getTag() + "|";
+
+                            }
+                        }
+
+                    }
                 }
 
 
@@ -125,12 +146,12 @@ public class ClienteCompraCategoriaActivity extends Activity {
                         pollDetail = new PollDetail();
                         pollDetail.setPoll_id(poll_id);
                         pollDetail.setStore_id(store_id);
-                        pollDetail.setSino(0);
+                        pollDetail.setSino(1);
                         pollDetail.setOptions(1);
                         pollDetail.setLimits(0);
                         pollDetail.setMedia(0);
                         pollDetail.setComment(0);
-                        pollDetail.setResult(0);
+                        pollDetail.setResult(is_sino);
                         pollDetail.setLimite(0);
                         pollDetail.setComentario("");
                         pollDetail.setAuditor(user_id);

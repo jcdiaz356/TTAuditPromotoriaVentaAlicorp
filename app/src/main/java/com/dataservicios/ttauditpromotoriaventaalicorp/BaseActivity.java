@@ -81,8 +81,7 @@ public class BaseActivity extends Activity {
 
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId( 0, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId( 1 , -1)));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId( 2 , -1)));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId( 3 , -1), true , "0"));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId( 2 , -1), true , "0"));
 
         navMenuIcons.recycle();
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
@@ -108,12 +107,12 @@ public class BaseActivity extends Activity {
 
 
                 getActionBar().setTitle(mDrawerTitle);
-                Log.i(LOG_TAG, String.valueOf(navDrawerItems.get(3).getCount() )) ;
+                Log.i(LOG_TAG, String.valueOf(navDrawerItems.get(2).getCount() )) ;
 
                 MediaRepo mr = new MediaRepo(MyActivity);
                 long Total = mr.getAllMedias().size();
 
-                navDrawerItems.get(3).setCount(String.valueOf(Total));
+                navDrawerItems.get(2).setCount(String.valueOf(Total));
                 adapter.notifyDataSetChanged();
                 //notifyDataSetChanged();
 
@@ -239,25 +238,25 @@ public class BaseActivity extends Activity {
 //                startActivity(intent);
                 break;
 
+//            case 1:
+//
+//                pathFile = Environment.getExternalStorageDirectory().toString()+"/Pictures/" + getAlbunNameTemp()  ;
+//
+//                //File filePath = new File(pathFile);
+//                filePath = new File(pathFile);
+//
+//                if (filePath.isDirectory()) {
+//                    Intent intent = new Intent();
+//                    intent.setAction(Intent.ACTION_VIEW);
+//                    Uri myUri = Uri.parse(String.valueOf(filePath));
+//                    intent.setDataAndType(myUri , "resource/folder");
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(MyActivity,"El directorio no existe, no hay imagenes temporales", Toast.LENGTH_LONG).show();
+//                }
+//
+//                break;
             case 1:
-
-                pathFile = Environment.getExternalStorageDirectory().toString()+"/Pictures/" + getAlbunNameTemp()  ;
-
-                //File filePath = new File(pathFile);
-                filePath = new File(pathFile);
-
-                if (filePath.isDirectory()) {
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    Uri myUri = Uri.parse(String.valueOf(filePath));
-                    intent.setDataAndType(myUri , "resource/folder");
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(MyActivity,"El directorio no existe, no hay imagenes temporales", Toast.LENGTH_LONG).show();
-                }
-
-                break;
-            case 2:
                 //fragment = new GraficosFragment();
                 //fragment = new PhotosFragment();
 
@@ -267,16 +266,27 @@ public class BaseActivity extends Activity {
                 filePath = new File(pathFile);
 
                 if (filePath.isDirectory()) {
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    Uri myUri = Uri.parse(String.valueOf(filePath));
-                    intent.setDataAndType(myUri , "resource/folder");
-                    startActivity(intent);
+                    try {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        Uri myUri = Uri.parse(String.valueOf(filePath));
+                        intent.setDataAndType(myUri , "resource/folder");
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                        Toast.makeText(MyActivity,"No se encuentra instalada la aplicación", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("market://details?id=com.estrongs.android.pop&hl=es"));
+                        startActivity(intent);
+                    }finally {
+
+                    }
                 } else {
                     Toast.makeText(MyActivity,"El directorio no existe, no hay backup de imágenes", Toast.LENGTH_LONG).show();
                 }
                 break;
-            case 3:
+            case 2:
                 //fragment = new CommunityFragment();
                 Intent intent;
                 intent = new Intent(MyActivity, RegistroMedia.class);

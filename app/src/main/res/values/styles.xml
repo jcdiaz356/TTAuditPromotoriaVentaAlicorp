@@ -166,4 +166,10 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
+    <!--<style name="MySpinnerLook" parent="android:TextAppearance.Widget.TextView.SpinnerItem">-->
+        <!--<item name="android:textSize">22sp</item>-->
+        <!--<item name="android:textColor">@color/color_dt_base</item>-->
+        <!--<item name="android:colorBackground">@color/color_dt_base</item>-->
+    <!--</style>-->
+
 </resources>

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dataservicios.ttauditpromotoriaventaalicorp.AlicorpPromotoria.CodigoVendedorActivity;
@@ -59,8 +61,8 @@ public class NewStoreActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_store);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setTitle("Nueva Tienda");
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getActionBar().setTitle("Nueva Tienda");
 
         Spinner spinner;
         spDistrito = (Spinner) findViewById(R.id.spDistrito) ;
@@ -366,10 +368,14 @@ public class NewStoreActivity extends Activity {
         list.add("MERCADO");
 
         //adapterDistrito = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, list);
-        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item, list);
+        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, list);
         //adapter.clear();
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+
+//        TextView spinnerText = (TextView) spGiro.getChildAt(0);
+//        spinnerText.setTextColor(Color.RED);
+
         spGiro.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

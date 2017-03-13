@@ -2,7 +2,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scrollView"
-    tool:contetext=".Encuesta"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tool="http://schemas.android.com/tools">
     <LinearLayout
@@ -125,8 +124,8 @@
                     <Spinner
                         android:layout_width="fill_parent"
                         android:layout_height="50dp"
+                        android:background="#d6d6d6"
                         android:id="@+id/spDistrito"
-
                         />
                 </LinearLayout>
 
@@ -144,6 +143,7 @@
                     <Spinner
                         android:layout_width="fill_parent"
                         android:layout_height="50dp"
+                        android:background="#d6d6d6"
                         android:id="@+id/spDepartamento"
 
                         />
@@ -189,7 +189,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="50dp"
                         android:id="@+id/spGiro"
-
+                        android:background="#d6d6d6"
+                        android:textColor="#040404"
                         />
                 </LinearLayout>
 
