@@ -256,11 +256,13 @@ public class NewStoreActivity extends Activity {
         list = new ArrayList<String>();
         //list.clear();
         list.add("Lima");
+        list.add("Ancón");
         list.add("Ate");
         list.add("Barranci");
         list.add("Breña");
         list.add("Bellavista");
         list.add("Callao");
+        list.add("Carabayllo");
         list.add("Carmen de la Legua");
         list.add("Comas");
         list.add("Chorrillos");
