@@ -264,6 +264,7 @@ public class NewStoreActivity extends Activity {
         list.add("Carmen de la Legua");
         list.add("Comas");
         list.add("Chorrillos");
+        list.add("Chosica");
         list.add("El Agustino");
         list.add("Jesús María");
         list.add("La Punta");
@@ -271,7 +272,10 @@ public class NewStoreActivity extends Activity {
         list.add("La Molina");
         list.add("La Victoria");
         list.add("Lince");
+        list.add("Lurigancho");
+        list.add("Los Olivos");
         list.add("Magdalena del Mar");
+        list.add("Manchay");
         list.add("Miraflores");
         list.add("Pueblo Libre");
         list.add("Puente Piedra");
@@ -287,7 +291,6 @@ public class NewStoreActivity extends Activity {
         list.add("Villa María del Triunfo");
         list.add("San Juan de Lurigancho");
         list.add("Santa Rosa");
-        list.add("Los Olivos");
         list.add("San Borja");
         list.add("Villa El Savador");
         list.add("Santa Anita");

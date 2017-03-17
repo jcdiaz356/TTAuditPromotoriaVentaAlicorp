@@ -96,10 +96,10 @@ public class ProductoEncontradoActivity extends Activity {
                     if(checkBoxArray[x].isChecked()) contador ++;
                 }
 
-                if (contador == 0){
-                    Toast.makeText(myActivity, R.string.message_select_options, Toast.LENGTH_LONG).show();
-                    return;
-                } else{
+//                if (contador == 0){
+//                    Toast.makeText(myActivity, R.string.message_select_options, Toast.LENGTH_LONG).show();
+//                    return;
+//                } else{
                     for (int x = 0; x < checkBoxArray.length; x++) {
                         if(checkBoxArray[x].isChecked())  {
                             opt1 = opt1 + poll_id.toString() + checkBoxArray[x].getTag() + "|";
@@ -107,7 +107,7 @@ public class ProductoEncontradoActivity extends Activity {
                         }
                     }
 
-                }
+               // }
 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(myActivity);
