@@ -60,7 +60,8 @@ public class FragmentRutas extends Fragment {
         id_user = user.get(SessionManager.KEY_ID_USER);
         //Añadiendo parametros para pasar al Json por metodo POST
 
-        gpsTracker = new GPSTracker(getActivity().getApplicationContext());
+        //gpsTracker = new GPSTracker(getActivity().getApplicationContext());
+        gpsTracker = new GPSTracker(getActivity());
 
         if(gpsTracker.canGetLocation()){
 

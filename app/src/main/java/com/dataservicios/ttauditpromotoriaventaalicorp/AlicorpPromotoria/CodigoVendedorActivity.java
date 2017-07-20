@@ -87,6 +87,11 @@ public class CodigoVendedorActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                if(etComent.getText().length() < 6) {
+                    Toast.makeText(myActivity,R.string.text_requiere_min_vendedor,Toast.LENGTH_LONG).show();
+                    etComent.requestFocus();
+                    return;
+                }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(myActivity);
                 builder.setTitle("Guardar Encuesta");

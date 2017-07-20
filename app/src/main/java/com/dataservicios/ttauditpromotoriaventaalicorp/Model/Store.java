@@ -16,6 +16,7 @@ public class Store {
     private String phone ;
     private String executive;
     private String giro ;
+    private String dex;
 //    $company_id = $valoresPost['company_id'];
 //    $fullname = $valoresPost['fullname'];
 //    $distributor = $valoresPost['code'];
@@ -107,5 +108,13 @@ public class Store {
 
     public void setGiro(String giro) {
         this.giro = giro;
+    }
+
+    public String getDex() {
+        return dex;
+    }
+
+    public void setDex(String dex) {
+        this.dex = dex;
     }
 }

@@ -101,13 +101,56 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:inputType="textCapSentences"
+                        android:inputType="number"
                         style="@style/TextLogin"
                         android:scrollHorizontally="false"
                         android:scrollbars="vertical"
                         android:id="@+id/etCodClient"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre Vendedor" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:inputType="textCapCharacters"
+                        style="@style/TextLogin"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"
+                        android:id="@+id/etVendedor"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dex" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+                    <Spinner
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/spDex"
+                        android:background="#d6d6d6"
+                        android:textColor="#040404"
                         />
                 </LinearLayout>
 
@@ -124,8 +167,9 @@
                     <Spinner
                         android:layout_width="fill_parent"
                         android:layout_height="50dp"
-                        android:background="#d6d6d6"
                         android:id="@+id/spDistrito"
+                        android:background="#d6d6d6"
+                        android:textColor="#040404"
                         />
                 </LinearLayout>
 
@@ -143,9 +187,9 @@
                     <Spinner
                         android:layout_width="fill_parent"
                         android:layout_height="50dp"
-                        android:background="#d6d6d6"
                         android:id="@+id/spDepartamento"
-
+                        android:background="#d6d6d6"
+                        android:textColor="#040404"
                         />
                 </LinearLayout>
 

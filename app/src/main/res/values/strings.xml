@@ -78,5 +78,10 @@
     <string name="text_requiere_address">Ingresar Dirección</string>
     <string name="title_activity_cliente_perfecto">ClientePerfectoActivity</string>
     <string name="message_create_store_finish">Termino el registro de la tienda</string>
+    <string name="message_gps_title">GPS configuración</string>
+    <string name="message_gps_information">El GPS no está habilitado. Ingrese a la configuración para habilitarlo</string>
+    <string name="message_gps_enabled_information">Habilite su GPS para continuar</string>
+    <string name="text_requiere_min_vendedor">Debe ingresar minimo 6 dígitos</string>
+
     <!-- Log Versiones  -->
 </resources>

@@ -44,8 +44,9 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="40dp"
-                    android:inputType="textMultiLine"
+                    android:inputType="number"
                     android:ems="10"
+                    android:maxLength="6"
                     style="@style/TextLogin"
                     android:lines="10"
                     android:scrollHorizontally="false"

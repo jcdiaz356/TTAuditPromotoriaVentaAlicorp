@@ -40,8 +40,9 @@ public class NewStoreActivity extends Activity {
     private Spinner spDistrito;
     private Spinner spDepartamento;
     private Spinner spGiro;
+    private Spinner spDex;
     private LinearLayout lyContent ;
-    private EditText etOtros, etFullname, etAddress,etCodClient, etTelefono ;
+    private EditText etOtros, etFullname, etAddress,etCodClient, etTelefono, etVendedor ;
     private Button btSave;
 
     private String strGiro ;
@@ -63,17 +64,18 @@ public class NewStoreActivity extends Activity {
         setContentView(R.layout.activity_new_store);
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
 //        getActionBar().setTitle("Nueva Tienda");
-
         Spinner spinner;
         spDistrito = (Spinner) findViewById(R.id.spDistrito) ;
         spDepartamento = (Spinner) findViewById(R.id.spDepartamento) ;
         spGiro = (Spinner) findViewById(R.id.spGiro) ;
+        spDex = (Spinner) findViewById(R.id.spDex) ;
         lyContent = (LinearLayout)  findViewById(R.id.lyContent);
         etOtros= (EditText) findViewById(R.id.etOtros) ;
         etFullname = (EditText) findViewById(R.id.etFullname);
         etAddress = (EditText) findViewById(R.id.etAddress) ;
         etCodClient = (EditText) findViewById(R.id.etCodClient) ;
         etTelefono = (EditText) findViewById(R.id.etTelefono) ;
+        etVendedor = (EditText) findViewById(R.id.etVendedor) ;
         btSave = (Button) findViewById(R.id.btSave);
 
         gpsTracker = new GPSTracker(myActivity);
@@ -88,6 +90,7 @@ public class NewStoreActivity extends Activity {
         loadDepartamento();
         loadDistrito();
         loadGiro();
+        loadDex();
 
 
         spGiro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -125,6 +128,8 @@ public class NewStoreActivity extends Activity {
                     return;
                 }
 
+
+
                 if(etAddress.getText().toString().equals("")) {
                     Toast.makeText(myActivity,R.string.text_requiere_address,Toast.LENGTH_LONG).show();
                     etAddress.requestFocus();
@@ -156,6 +161,7 @@ public class NewStoreActivity extends Activity {
                     GlobalConstant.longitude_open= gpsTracker.getLongitude();
                 }else{
                     gpsTracker.showSettingsAlert();
+                    Toast.makeText(myActivity,R.string.message_gps_enabled_information,Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -172,11 +178,12 @@ public class NewStoreActivity extends Activity {
                         store.setCode("Alicorp");
                         store.setAddress(etAddress.getText().toString());
                         store.setCodCliente(etCodClient.getText().toString());
+                        store.setDex(spDex.getSelectedItem().toString());
                         store.setDistrict(spDistrito.getSelectedItem().toString());
                         store.setDepartamento(spDistrito.getSelectedItem().toString());
                         store.setGiro(strGiro.toString());
                         store.setPhone(etTelefono.getText().toString());
-                        store.setExecutive("");
+                        store.setExecutive(etVendedor.getText().toString());
 
 
                         new loadPoll().execute();
@@ -386,5 +393,35 @@ public class NewStoreActivity extends Activity {
     }
 
 
+    public void loadDex() {
+
+        list = new ArrayList<String>();
+        list.clear();
+        list.add("DISTRIBUIDORA NUGENT SA");
+        list.add("COBERDEX SOCIEDAD ANONIMA CERRADA");
+        list.add("ATIPANA DEX S.A.C.");
+        list.add("EDUSA");
+        list.add("CUNZA");
+        list.add("MEDINA");
+        list.add("FUERZA DEX");
+        list.add("COBERTURA DEL SUR");
+        list.add("JIRUSA");
+        list.add("REDIJISA");
+        list.add("TERRANORTE");
+        list.add("VIJISA");
+
+
+        //adapterDistrito = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, list);
+        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, list);
+        //adapter.clear();
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+
+//        TextView spinnerText = (TextView) spGiro.getChildAt(0);
+//        spinnerText.setTextColor(Color.RED);
+
+        spDex.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
 
 }

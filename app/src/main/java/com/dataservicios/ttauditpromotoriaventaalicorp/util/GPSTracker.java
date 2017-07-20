@@ -13,6 +13,8 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.dataservicios.ttauditpromotoriaventaalicorp.R;
+
 /**
  * Created by user on 04/01/2015.
  */
@@ -153,11 +155,12 @@ public class GPSTracker extends Service implements LocationListener {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
         // Setting Dialog Title
-        alertDialog.setTitle("GPS is settings");
+
+        alertDialog.setTitle(R.string.message_gps_title);
 
         // Setting Dialog Message
         //alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
-        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
+        alertDialog.setMessage(R.string.message_gps_information);
 
         // On pressing Settings button
         alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {

@@ -22,7 +22,6 @@ public final class GlobalConstant {
             901, //	6	Cliente permitio trabajar gondola
             961, //	7	Cliente Compró por categoría
 
-
     };
 
 

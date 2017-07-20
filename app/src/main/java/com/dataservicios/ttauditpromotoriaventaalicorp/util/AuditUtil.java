@@ -561,6 +561,7 @@ public class AuditUtil {
             params.put("ejecutivo"                 , String.valueOf(store.getExecutive()));
             params.put("codclient"             , String.valueOf(store.getCodCliente()));
             params.put("giro"             , String.valueOf(store.getGiro()));
+            params.put("dex"             , String.valueOf(store.getDex()));
 
             JSONParserX jsonParser = new JSONParserX();
             // getting product details by making HTTP request
