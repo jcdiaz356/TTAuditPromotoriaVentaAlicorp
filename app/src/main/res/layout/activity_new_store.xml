@@ -153,7 +153,24 @@
                         android:textColor="#040404"
                         />
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Departament" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible">
+                    <Spinner
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/spDepartamento"
+                        android:background="#d6d6d6"
+                        android:textColor="#040404"
+                        />
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -174,24 +191,7 @@
                 </LinearLayout>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Departament" />
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:visibility="visible">
-                    <Spinner
-                        android:layout_width="fill_parent"
-                        android:layout_height="50dp"
-                        android:id="@+id/spDepartamento"
-                        android:background="#d6d6d6"
-                        android:textColor="#040404"
-                        />
-                </LinearLayout>
+
 
 
                 <TextView

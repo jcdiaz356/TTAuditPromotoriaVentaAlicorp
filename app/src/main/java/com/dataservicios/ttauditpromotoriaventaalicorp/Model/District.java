@@ -6,6 +6,8 @@ package com.dataservicios.ttauditpromotoriaventaalicorp.Model;
 
 public class District {
     private int id;
+    private int departament_id ;
+    private String name;
 
     public int getId() {
         return id;
@@ -31,8 +33,10 @@ public class District {
         this.name = name;
     }
 
-    private int departament_id ;
-    private String name;
 
+    @Override
+    public String toString () {
+        return name;
+    }
 
 }

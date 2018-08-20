@@ -21,9 +21,13 @@ import android.widget.Toast;
 
 import com.dataservicios.ttauditpromotoriaventaalicorp.AlicorpPromotoria.CodigoVendedorActivity;
 import com.dataservicios.ttauditpromotoriaventaalicorp.Model.Audit;
+import com.dataservicios.ttauditpromotoriaventaalicorp.Model.Department;
+import com.dataservicios.ttauditpromotoriaventaalicorp.Model.District;
 import com.dataservicios.ttauditpromotoriaventaalicorp.Model.PollDetail;
 import com.dataservicios.ttauditpromotoriaventaalicorp.Model.Store;
 import com.dataservicios.ttauditpromotoriaventaalicorp.R;
+import com.dataservicios.ttauditpromotoriaventaalicorp.Repositories.DepartmentRepo;
+import com.dataservicios.ttauditpromotoriaventaalicorp.Repositories.DistrictRepo;
 import com.dataservicios.ttauditpromotoriaventaalicorp.util.AuditUtil;
 import com.dataservicios.ttauditpromotoriaventaalicorp.util.GPSTracker;
 import com.dataservicios.ttauditpromotoriaventaalicorp.util.GlobalConstant;
@@ -56,6 +60,9 @@ public class NewStoreActivity extends Activity {
     private Store store ;
     private PollDetail pollDetail;
     private Audit mAudit;
+    private DistrictRepo districtRepo;
+    private DepartmentRepo departmentRepo;
+
     GPSTracker gpsTracker;
 
     @Override
@@ -86,9 +93,35 @@ public class NewStoreActivity extends Activity {
 
         store = new Store();
 
+        departmentRepo  = new DepartmentRepo(getApplicationContext());
+        districtRepo    = new DistrictRepo(getApplicationContext());
+
 
         loadDepartamento();
-        loadDistrito();
+        spDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //String label = parent.getItemAtPosition(position).toString();
+                int departament_id = ((Department) spDepartamento.getSelectedItem()).getId () ;
+                String label = ((Department) spDepartamento.getSelectedItem () ).getName () ;
+
+
+                ArrayList<District> districts = (ArrayList<District>) districtRepo.getDistrictForDepartment(departament_id);
+                ArrayAdapter<District> spinnerAdapter = new ArrayAdapter<District>(getApplicationContext(), android.R.layout.simple_spinner_item, districts);
+                spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spDistrito.setAdapter(spinnerAdapter);
+
+                //Toast.makeText(parent.getContext(), "Seleciono: " + label + " ID: " + String.valueOf(departament_id) ,Toast.LENGTH_LONG).show();
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+//        loadDistrito();
         loadGiro();
         loadDex();
 
@@ -315,43 +348,14 @@ public class NewStoreActivity extends Activity {
     }
 
     public void loadDepartamento() {
-        list = new ArrayList<String>();
-        //list.clear();
-        list.add("Lima");
-        list.add("Amazonas");
-        list.add("Ancash");
-        list.add("Apurimac");
-        list.add("Arequipa");
-        list.add("Ayacucho");
-        list.add("Cajamarca");
-        list.add("Callao");
-        list.add("Cusco");
-        list.add("Huancavelica");
-        list.add("Huanuco");
-        list.add("Ica");
-        list.add("Junin");
-        list.add("La Libertad");
-        list.add("Lambayeque");
-        list.add("Loreto");
-        list.add("Madre De Dios");
-        list.add("Moquegua");
-        list.add("Pasco");
-        list.add("Piura");
-        list.add("Puno");
-        list.add("San Martin");
-        list.add("Tacna");
-        list.add("Tumbes");
-        list.add("Ucayali");
-
-
-        //adapterDistrito = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, list);
-        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item, list);
-        //adapter.clear();
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //
-        //adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-        spDepartamento.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        ArrayList<Department> departments    = (ArrayList<Department>) departmentRepo.getAllDepartment();
+//        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item, list);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spDepartamento.setAdapter(adapter);
+//        adapter.notifyDataSetChanged();
+        ArrayAdapter<Department> spinnerAdapter = new ArrayAdapter<Department>(getApplicationContext(), android.R.layout.simple_spinner_item, departments);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spDepartamento.setAdapter(spinnerAdapter);
     }
 
     public void loadGiro() {
@@ -397,18 +401,19 @@ public class NewStoreActivity extends Activity {
 
         list = new ArrayList<String>();
         list.clear();
-        list.add("DISTRIBUIDORA NUGENT SA");
         list.add("COBERDEX SOCIEDAD ANONIMA CERRADA");
-        list.add("ATIPANA DEX S.A.C.");
         list.add("EDUSA");
-        list.add("CUNZA");
-        list.add("MEDINA");
-        list.add("FUERZA DEX");
         list.add("COBERTURA DEL SUR");
         list.add("JIRUSA");
         list.add("REDIJISA");
         list.add("TERRANORTE");
-        list.add("VIJISA");
+        list.add("Distribuidora Lider C.A.");
+        list.add("KONSUMASS ");
+        list.add("SAN JUAN");
+        list.add("CODIJISA ");
+        list.add("MADEX");
+        list.add("DOLPHINS");
+        list.add("CHALI");
 
 
         //adapterDistrito = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, list);

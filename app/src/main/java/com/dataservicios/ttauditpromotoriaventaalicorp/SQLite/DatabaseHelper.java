@@ -4,18 +4,24 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by usuario on 12/02/2015.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
+    private Context context;
     // Logcat tag
     private static final String LOG = "DatabaseHelper";
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     // Database Name
     private static final String DATABASE_NAME = "db_alicor_promo";
     // Table Names
@@ -23,7 +29,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     protected static final String TABLE_USER = "user";
 
     protected static final String TABLE_MEDIAS = "medias";
-
+    protected static final String TABLE_DEPARTMENT = "Departament";
+    protected static final String TABLE_DISTRICT = "District";
     //Name columns common
     protected static final String KEY_ID = "id";
     protected static final String KEY_NAME = "name";
@@ -31,6 +38,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     protected static final String KEY_POLL_ID = "poll_id";
     protected static final String KEY_DATE_CREATED= "created_at";
     protected static final String KEY_DATE_UPDATE= "update_at";
+    protected static final String KEY_DEPARTMENT_ID= "departament_id";
+
 
     //Name columns user
     protected static final String KEY_EMAIL = "email";
@@ -80,8 +89,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_TYPE + " INTEGER, "
             + KEY_DATE_CREATED + " TEXT )";
 
+
+    // User table create statement
+    private static final String CREATE_TABLE_DEPARTMENT = "CREATE TABLE "
+            + TABLE_DEPARTMENT + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_NAME + " TEXT )";
+
+    private static final String CREATE_TABLE_DISTRICT = "CREATE TABLE "
+            + TABLE_DISTRICT + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_DEPARTMENT_ID + " INTEGER ,"
+            + KEY_NAME + " TEXT )";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -90,6 +111,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_MEDIAS);
+        db.execSQL(CREATE_TABLE_DEPARTMENT);
+        db.execSQL(CREATE_TABLE_DISTRICT);
+
+        preloadData(db,context);
     }
 
 
@@ -99,6 +124,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEDIAS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DEPARTMENT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DISTRICT);
 
         // create new tables
         onCreate(db);
@@ -111,7 +138,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //////////////////////////////////////////////////////////////////////////////////
 
 
-    public static boolean checkDataBase(Context context) {
+    public boolean checkDataBase(Context context) {
         SQLiteDatabase checkDB = null;
         try {
             File database=context.getDatabasePath(DATABASE_NAME);
@@ -120,6 +147,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String myPath = database.getAbsolutePath();
                 Log.i(LOG, myPath);
                 checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+//                checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+
+
                 //return true;
             } else {
                 // Database does not exist so copy it from assets here
@@ -134,6 +164,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return checkDB != null ? true : false;
+    }
+
+
+    private void preloadData(SQLiteDatabase db, Context context) {
+
+        InputStream is = null;
+        try {
+
+            is = context.getAssets().open("insert.sql");
+            if (is != null) {
+                db.beginTransaction();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                String line = reader.readLine();
+                while (!TextUtils.isEmpty(line)) {
+                    db.execSQL(line);
+                    line = reader.readLine();
+
+                }
+                db.setTransactionSuccessful();
+            }
+
+            is.close();
+
+            Log.i(LOG,"Insert rows");
+        } catch (IOException e) {
+            // Muestra log
+            Log.e(LOG, "Error in File insert.sql", e);
+
+        } catch (Exception e) {
+            // Muestra log
+            Log.e(LOG, "Error preloadData", e);
+        } finally {
+            db.endTransaction();
+        }
     }
 
 }
